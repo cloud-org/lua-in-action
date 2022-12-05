@@ -3,3 +3,8 @@ repos:
   rev: v1.0.0
   hooks:
     - id: luacheck
+- repo: https://github.com/thlorenz/doctoc
+  rev: v2.2.0
+  hooks:
+    - id: doctoc
+      exclude: ^vendor/
