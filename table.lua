@@ -4,3 +4,63 @@
 --- DateTime: 2022/12/5 00:28
 ---
 
+a = {}
+k = "x"
+a[k] = 10 -- key: x, value: 10
+a[20] = "great" -- key: 20, value: "great"
+
+a = {}
+a["x"] = 10
+b = a
+b["name"] = "panda"
+
+print(a["x"])
+print(b["x"])
+a = nil
+--print(a["x"]) -- a is nil cause error
+print(b["x"]) -- 同样还是有
+
+t = {}
+for i = 1, 1000 do
+    t[i] = i * 2
+end
+print(t[9])
+
+-- a["name"] -> a.name
+
+print(#t)
+
+-- pairs and ipairs
+t1 = { 1, p = nil, name = "panda", 3, 4, age = 18 }
+-- 使用 ipairs 时，可以假定先去除 key=value 的元素
+-- 例如 t1 剩下 { 1, 3, 4} 然后再做遍历
+print("t1.pointer", t1)
+print('t1 ipairs is')
+for i, v in ipairs(t1) do
+    print(i, '=', v)
+end
+-- 注: 如果 p = nil, 修改为 nil，则剩下 { 1, nil, 3, 4} nil 会中断后续的遍历操作
+-- 如果这个时候使用 t1[2] = xx // 修改为有效值 则能继续遍历
+-- !!! do not use nil in table
+t1 = { 1, nil, name = "panda", 3, 4, age = 18 }
+print("t1.pointer", t1)
+t1[2] = 22 -- 修改下标 2 (对应 nil)的值为 22
+print('t1 ipairs is')
+for i, v in ipairs(t1) do
+    print(i, '=', v)
+end
+print('t1 pairs is')
+for i, v in pairs(t1) do
+    print(i, '=', v)
+end
+
+function table_len(t)
+    local len = 0
+    for k, v in pairs(t) do
+        len = len + 1
+    end
+    return len;
+end
+
+print("t1.len", table_len(t1)) --6
+print(#t1, table.getn(t1))
