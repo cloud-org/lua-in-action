@@ -64,3 +64,12 @@ end
 
 print("t1.len", table_len(t1)) --6
 print(#t1, table.getn(t1))
+
+
+myt = {"panda",name="xzx", " ", "ashing"}
+print(table.concat(myt)) -- panda ashing
+
+table.sort(myt)
+for k,v in pairs(myt) do
+    print(k,v)
+end
